@@ -1,0 +1,460 @@
+<template>
+
+  <div>
+<div class="jumbotron"><h1>Blackjack</h1> <br> <p>get as close as possible to 21 without going over!</p></div>
+<div class="container">
+  <strong>Rodrigo (dealer)</strong>
+ <div class="opponent">
+  <div class="card-deck">
+    
+    <div class="card">
+      
+      <div class="card-body text-center" >
+        <img class="cardback" src="https://productimages.hepsiburada.net/s/4/280-413/9637261017138.jpg" alt="">
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="oppCard2">card2</p>
+      </div>
+    </div>
+    <div class="card">
+    </div>
+    <div class="card">
+    </div>
+    <div class="card">
+    </div>  
+  </div>
+  </div>
+  <br>
+    <br>
+    <div class="card-deck">
+    <div class="card">
+      <div class="card-body">
+        <p class="score"> Rodrigo: <br> You:</p>
+      </div>
+    </div>
+    <div class="card">
+    <div class="card-body"> <button @click="hitMe()">Hit me</button><button @click="stand()">I'll stand</button></div>
+  </div>
+  </div>
+  <strong>You</strong>
+  <div class="you">
+  <div class="card-deck">
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="card1"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="card2"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="card3"></p>
+      </div>
+    </div>
+    
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="card4"></p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body text-center">
+        <p class="card5"></p>
+      </div>
+    </div>  
+  </div>
+  </div>
+</div>
+
+
+  </div>
+  
+</template>
+
+<script>
+
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+
+export default {
+
+  data() {
+    return {
+
+  cards:[
+    {
+      class: 'hearts',
+      value: 'A',
+      img: 'https://www.falderyasi.com/medya/iskambil/kupa-as-iskambil-karti-www.falderyasi.com.png',
+    },
+    {
+      class: 'hearts',
+      value: 2,
+      img: 'https://www.falderyasi.com/medya/iskambil/kupa-2-iskambil-karti-www.falderyasi.com.png',
+    },
+    {
+      class: 'hearts',
+      value: 3,
+      img: 'https://www.falderyasi.com/medya/iskambil/kupa-3-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 4,
+      img: 'https://www.falderyasi.com/medya/iskambil/kupa-4-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 5,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-5-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 6,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-6-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 7,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-7-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 8,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-8-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 9,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-9-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-10-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 10,
+      img:'http://www.studyomodern.com/wp-content/uploads/2014/04/KUPA_J1.jpg'
+    },
+    {
+      class: 'hearts',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-kiz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'hearts',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-papaz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 'A',
+      img:'https://www.falderyasi.com/medya/iskambil/kupa-as-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 2,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-2-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 3,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-3-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 4,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-4-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 5,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-5-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 6,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-6-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 7,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-7-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 8,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-8-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 9,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-9-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-10-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 10,
+      img:'https://seyler.ekstat.com/img/max/800/R/RFxlRf5OE3UoDrV1-635888236872957791.jpg'
+    },
+    {
+      class: "diamonds",
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-kiz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: "diamonds",
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/karo-papaz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 'A',
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-as-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 2,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-2-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 3,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-3-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 4,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-4-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 5,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-5-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 6,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-6-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 7,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-7-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 8,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-8-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 9,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-9-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-10-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 10,
+      img:'https://www.studyomodern.com/wp-content/uploads/2014/04/SINEK_J.jpg'
+    },
+    {
+      class: 'club',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-kiz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'club',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/sinek-papaz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 'A',
+      img:'https://www.falderyasi.com/medya/iskambil/maca-as-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 2,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-2-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 3,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-3-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 4,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-4-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 5,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-5-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 6,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-6-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 7,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-7-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 8,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-8-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 9,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-9-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-10-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-as-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-kiz-iskambil-karti-www.falderyasi.com.png'
+    },
+    {
+      class: 'spades',
+      value: 10,
+      img:'https://www.falderyasi.com/medya/iskambil/maca-papaz-iskambil-karti-www.falderyasi.com.png'
+    }
+
+  ],
+  tersKart: true,
+  oppScore: 0,
+  yourScore: 0,
+    };
+  },
+
+  methods: {
+  winner(yourScore,oppScore){
+  if(yourScore===21){
+    if(oppScore===21){
+     alert("Berabere,oyun tekrarı");
+  }
+     else alert("KAZANDINIZ");
+  } 
+  else if(yourScore>21){
+    alert("KAYBETTİNİZ");
+  }
+  else {
+    if(oppScore<21){
+      if(yourScore>oppScore){
+        alert("KAZANDINIZ");
+    }
+      else if(oppScore===score1){
+        alert("Berabere,oyun tekrarı");
+
+   }
+      else alert("KAYBETTİNİZ");
+  }
+    }
+    },
+    hitMe() {
+      document.querySelector('.score').innerHTML = "you: " + (this.yourScore) + "opp: " + (this.oppScore);
+    },
+    stand() {
+      this.tersKart = false;
+    },
+    
+    score(cards) {
+      document.querySelector('.score').innerHTML = "you: " + (this.yourScore) + "opp: " + (this.oppScore);
+
+  },
+
+    mountedbuildList(cards) {
+      var random1 = Math.floor(Math.random() * cards.length);
+      var html1 = "<img src='" + cards[random1].img + "'>";
+      this.oppScore += cards[random1].value;
+      document.querySelector('.oppCard2').innerHTML = html1;
+      cards.splice(random1,1);
+      var random2 = Math.floor(Math.random() * cards.length);
+      var html2 = "<img src='" + cards[random2].img + "'>";
+      this.yourScore += cards[random2].value;
+      document.querySelector('.card1').innerHTML = html2;
+      cards.splice(random2,1);
+      var random3 = Math.floor(Math.random() * cards.length);
+      var html3 = "<img src='" + cards[random3].img + "'>";
+      this.yourScore += cards[random3].value;
+      document.querySelector('.card2').innerHTML = html3;
+      cards.splice(random3,1);
+    },
+
+    buildListOpp(cards) {
+      var html ="";
+
+
+    },
+    buildList(cards) {
+      var html ='<div class="card-deck"> <div class="card"> <div class="card-body text-center">'
+
+
+
+      document.querySelector('.you').innerHTML = html;
+    },
+
+  },
+
+
+ mounted() {
+    this.mountedbuildList(this.cards);
+ }
+
+}
+
+
+
+</script>
+
+<style>
+
+img {
+  width: 150px;
+}
+
+.jumbotron {
+  height: 190px;
+}
+
+.card .bg-danger {
+  border: solid gray
+}
+
+.cardback {
+  width: 150px;
+}
+
+</style>
